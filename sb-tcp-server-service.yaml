@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tcp-server-svc
+  namespace: vtest1
+  labels:
+    app: tcp-server-svc
+spec:
+  ports:
+  - port: 8092
+    targetPort: 8092
+    nodePort: 32650
+  type: NodePort
+  selector:
+    app: tcp-server-app

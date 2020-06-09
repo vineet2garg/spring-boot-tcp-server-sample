@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: tcp-server-app
+  name: tcp-server-app
+  namespace: vtest1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tcp-server-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: tcp-server
+    spec:
+      containers:
+      - image: vineet2garg/tcp-server:1.0
+        name: tcp-server
+        resources:
+           limits:
+             memory: "512Mi"
+           requests:
+             memory: "256Mi"
+        ports:
+          - containerPort: 8092
+        env:
+          - name: spring.tcp.server.port
+            value: "8092"
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "2"

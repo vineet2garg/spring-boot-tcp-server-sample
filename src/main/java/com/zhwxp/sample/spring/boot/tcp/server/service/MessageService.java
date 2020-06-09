@@ -1,7 +1,13 @@
 package com.zhwxp.sample.spring.boot.tcp.server.service;
 
+import org.springframework.messaging.MessageHeaders;
+
 public interface MessageService {
 
-    byte[] processMessage(byte[] message);
+	public byte[] processMessage(byte[] message, MessageHeaders messageHeaders);
+
+	public void sendMessageToClient(String clientId, String message);
+
+	public String listAllConnections();
 
 }
